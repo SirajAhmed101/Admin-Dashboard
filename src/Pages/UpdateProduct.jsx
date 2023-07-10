@@ -1,25 +1,34 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UpdateProductContext } from "../Context/UpdateProductContext";
+import { ProductContext } from "../Context/ProductContext";
 
 const UpdateProduct = () => {
+  const { updateFormData, setUpdateFormData } =
+    useContext(UpdateProductContext);
+
+  const {
+    id,
+    name,
+    sales,
+    price,
+    category,
+    stock,
+    description,
+    src,
+    file,
+    status,
+  } = updateFormData;
+
+  const { productsData, setProductsData } = useContext(ProductContext);
+
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    sales: "",
-    price: "",
-    category: "",
-    stock: "",
-    description: "",
-    src: "",
-    file: "",
-    status: "",
-  });
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setFormData((prevFromData) => {
+    setUpdateFormData((prevFromData) => {
       return {
         ...prevFromData,
         [name]: value,
@@ -28,7 +37,27 @@ const UpdateProduct = () => {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    const checkID = productsData.find((item) => {
+      return item.id === updateFormData.id;
+    });
+
+    setProductsData([
+      ...productsData,
+      {
+        id,
+        name,
+        sales,
+        price,
+        category,
+        stock,
+        description,
+        src,
+        file,
+        status,
+      },
+    ]);
   }
+
   return (
     <>
       <div className="p-4 sm:ml-64">
@@ -61,7 +90,7 @@ const UpdateProduct = () => {
                     <input
                       type="text"
                       name="name"
-                      value={formData.productName}
+                      value={updateFormData.name}
                       onChange={handleChange}
                       id="name"
                       className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
@@ -79,7 +108,7 @@ const UpdateProduct = () => {
                     <input
                       type="number"
                       name="sales"
-                      value={formData.sales}
+                      value={updateFormData.sales}
                       onChange={handleChange}
                       id="sales"
                       className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
@@ -97,7 +126,7 @@ const UpdateProduct = () => {
                     <input
                       type="number"
                       name="price"
-                      value={formData.price}
+                      value={updateFormData.price}
                       onChange={handleChange}
                       id="price"
                       className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
@@ -116,7 +145,7 @@ const UpdateProduct = () => {
                       id="category"
                       className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                       name="category"
-                      value={formData.category}
+                      value={updateFormData.category}
                       onChange={handleChange}
                     >
                       <option defaultValue="">Select category</option>
@@ -137,7 +166,7 @@ const UpdateProduct = () => {
                     <input
                       type="number"
                       name="stock"
-                      value={formData.stock}
+                      value={updateFormData.stock}
                       onChange={handleChange}
                       id="stock"
                       className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
@@ -155,7 +184,7 @@ const UpdateProduct = () => {
                     <textarea
                       id="description"
                       name="description"
-                      value={formData.description}
+                      value={updateFormData.description}
                       onChange={handleChange}
                       rows={8}
                       className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
@@ -173,7 +202,7 @@ const UpdateProduct = () => {
                     <input
                       type="text"
                       name="src"
-                      value={formData.src}
+                      value={updateFormData.src}
                       onChange={handleChange}
                       id="name"
                       className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
@@ -193,7 +222,7 @@ const UpdateProduct = () => {
                       id="category"
                       className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5 block w-[50%] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                       name="status"
-                      value={formData.status}
+                      value={updateFormData.status}
                       onChange={handleChange}
                     >
                       <option defaultValue="">Select Status</option>
@@ -206,7 +235,7 @@ const UpdateProduct = () => {
                       name="file"
                       id="name"
                       required=""
-                      value={formData.file}
+                      value={updateFormData.file}
                       onChange={handleChange}
                     />
                   </div>

@@ -8,6 +8,7 @@ const AddProduct = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
     sales: "",
     price: "",
@@ -18,6 +19,20 @@ const AddProduct = () => {
     file: "",
     status: "",
   });
+
+  const {
+    id,
+    name,
+    sales,
+    price,
+    category,
+    stock,
+    description,
+    src,
+    file,
+    status,
+  } = formData;
+
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -28,8 +43,6 @@ const AddProduct = () => {
       };
     });
   }
-  console.log(formData);
-  console.log(productsData);
 
   useEffect(() => {
     localStorage.setItem("productsData", JSON.stringify(productsData));
@@ -37,7 +50,21 @@ const AddProduct = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setProductsData([...productsData, formData]);
+    setProductsData([
+      ...productsData,
+      {
+        id: Date.now(),
+        name,
+        sales,
+        price,
+        category,
+        stock,
+        description,
+        src,
+        file,
+        status,
+      },
+    ]);
 
     alert("Your Item Successfully Added!");
   }

@@ -4,15 +4,14 @@ import App from "./App.jsx";
 import "./index.css";
 
 import ProductProvider from "./Context/ProductContext.jsx";
-import productsData from "./Data/ProdutcData.jsx";
+import UpdateProductProvider from "./Context/UpdateProductContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ProductProvider>
-      <App />
-    </ProductProvider>
+    <UpdateProductProvider>
+      <ProductProvider>
+        <App />
+      </ProductProvider>
+    </UpdateProductProvider>
   </React.StrictMode>
 );
-
-
-

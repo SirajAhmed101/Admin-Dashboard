@@ -8,23 +8,34 @@ import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
+import { UpdateProductContext } from "../Context/UpdateProductContext";
+
 const Products = () => {
   const [gridViewToggle, setGridViewToggle] = useState(false);
   const [listViewToggle, setlistViewToggle] = useState(true);
   const { productsData, setProductsData } = useContext(ProductContext);
+  const { updateFormData, setUpdateFormData } =
+    useContext(UpdateProductContext);
+
+  console.log(updateFormData);
+
   const navigate = useNavigate();
 
-  console.log(productsData);
+  const editProduct = (i) => {
+    navigate("/update-product");
+    console.log(i);
 
-  // const editProduct = (id) => {
-  //   navigate("/update-product");
+    const newEdit = productsData.find((item) => {
+      return item.id === i;
+    });
 
-  //   const newEdit = productsData.filter((item, itemId) => {
-  //     return itemId === id;
-  //   });
-  //   console.log(newEdit);
-  //   // setProductsData({ ...productsData, name: "" });
-  // };
+    console.log(i);
+    console.log(newEdit);
+
+    setUpdateFormData({ ...updateFormData, ...newEdit });
+  };
+
+  // _--------------------------------------------*-----------------------------------
 
   const deleteItem = (id) => {
     const deleteItem = productsData.filter((items, ind) => {
@@ -127,8 +138,16 @@ const Products = () => {
               </thead>
               <tbody>
                 {productsData.map((items, ind) => {
-                  const { name, src, category, status, price, stock, sales } =
-                    items;
+                  const {
+                    id,
+                    name,
+                    src,
+                    category,
+                    status,
+                    price,
+                    stock,
+                    sales,
+                  } = items;
 
                   return (
                     <tr
@@ -160,7 +179,7 @@ const Products = () => {
                         />
                         <BiEdit
                           size={25}
-                          onClick={() => editProduct(ind)}
+                          onClick={() => editProduct(id)}
                           className="cursor-pointer"
                         />
                         <RiDeleteBin6Line
@@ -184,7 +203,7 @@ const Products = () => {
           } grid gap-4 max-sm:grid-cols-2 max-[375px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4`}
         >
           {productsData.map((product, ind) => {
-            const { name, src, category, status, sales, stock, price } =
+            const { id, name, src, category, status, sales, stock, price } =
               product;
             return (
               <div
