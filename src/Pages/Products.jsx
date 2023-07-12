@@ -11,13 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { UpdateProductContext } from "../Context/UpdateProductContext";
 
 const Products = () => {
-  const [gridViewToggle, setGridViewToggle] = useState(false);
-  const [listViewToggle, setlistViewToggle] = useState(true);
+  const [gridViewToggle, setGridViewToggle] = useState(true);
+  const [listViewToggle, setlistViewToggle] = useState(false);
   const { productsData, setProductsData } = useContext(ProductContext);
   const { updateFormData, setUpdateFormData } =
     useContext(UpdateProductContext);
-
-  console.log(updateFormData);
 
   const navigate = useNavigate();
 
@@ -29,13 +27,8 @@ const Products = () => {
       return item.id === i;
     });
 
-    console.log(i);
-    console.log(newEdit);
-
     setUpdateFormData({ ...updateFormData, ...newEdit });
   };
-
-  // _--------------------------------------------*-----------------------------------
 
   const deleteItem = (id) => {
     const deleteItem = productsData.filter((items, ind) => {
@@ -132,7 +125,7 @@ const Products = () => {
                     Price
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Status
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -197,72 +190,75 @@ const Products = () => {
         )}
 
         {/* // Grid View Product Data */}
-        <div
-          className={`${
-            gridViewToggle === false ? "hidden" : ""
-          } grid gap-4 max-sm:grid-cols-2 max-[375px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4`}
-        >
-          {productsData.map((product, ind) => {
-            const { id, name, src, category, status, sales, stock, price } =
-              product;
-            return (
-              <div
-                className="max-w-sm cursor-pointer  rounded-lg border border-gray-200 bg-[#f3f6fd] shadow transition-all duration-500 hover:scale-105 dark:border-gray-700 dark:bg-gray-800"
-                key={ind}
-                onClick={() => navigate("/view-item")}
-              >
-                <div className="relative h-[10rem] w-full">
-                  <img
-                    src={src}
-                    className="h-full w-full rounded-t-lg object-cover  object-center"
-                  />
-                  <RiDeleteBin6Line
-                    size={25}
-                    className="absolute right-0 top-2 text-slate-600"
-                    onClick={() => deleteItem(id)}
-                  />
-                </div>
-                <div className="p-5">
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {name}
-                  </h5>
+        {productsData.length < 1 && <div>No Items are added yet</div>}
+        {productsData.length > 0 && (
+          <div
+            className={`${
+              gridViewToggle === false ? "hidden" : ""
+            } grid gap-4 max-sm:grid-cols-2 max-[375px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4`}
+          >
+            {productsData.map((product, ind) => {
+              const { id, name, src, category, status, sales, stock, price } =
+                product;
+              return (
+                <div
+                  className="max-w-sm cursor-pointer  rounded-lg border border-gray-200 bg-[#f3f6fd] shadow transition-all duration-500 hover:scale-105 dark:border-gray-700 dark:bg-gray-800"
+                  key={ind}
+                  onClick={() => navigate("/view-item")}
+                >
+                  <div className="relative h-[10rem] w-full">
+                    <img
+                      src={src}
+                      className="h-full w-full rounded-t-lg object-cover  object-center"
+                    />
+                    <RiDeleteBin6Line
+                      size={25}
+                      className="absolute right-0 top-2 text-slate-600"
+                      onClick={() => deleteItem(id)}
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      {name}
+                    </h5>
 
-                  <div className="about-product-content">
-                    <div className="category flex items-center justify-between">
-                      <p className="font-bold	 text-slate-500">Category:</p>
-                      <span>{category}</span>
-                    </div>
-                    <div className="category flex items-center justify-between">
-                      <p className="font-bold	 text-slate-500">Status:</p>
-                      <span
-                        className={`${
-                          status === "Active"
-                            ? "flex w-16 items-center rounded bg-green-200 text-center text-[#2ba972]"
-                            : "w-18 flex items-center rounded bg-slate-200 text-center text-[#59719d]"
-                        }`}
-                      >
-                        <BsDot size={15} />
-                        {status}
-                      </span>
-                    </div>
-                    <div className="category flex items-center justify-between">
-                      <p className="font-bold	 text-slate-500">Sales:</p>
-                      <span>{sales}</span>
-                    </div>
-                    <div className="category flex items-center justify-between">
-                      <p className="font-bold	 text-slate-500">Stock:</p>
-                      <span>{stock}</span>
-                    </div>
-                    <div className="category flex items-center justify-between">
-                      <p className="font-bold	 text-slate-500">Price:</p>
-                      <span>{price}</span>
+                    <div className="about-product-content">
+                      <div className="category flex items-center justify-between">
+                        <p className="font-bold	 text-slate-500">Category:</p>
+                        <span>{category}</span>
+                      </div>
+                      <div className="category flex items-center justify-between">
+                        <p className="font-bold	 text-slate-500">Status:</p>
+                        <span
+                          className={`${
+                            status === "Active"
+                              ? "flex w-16 items-center rounded bg-green-200 text-center text-[#2ba972]"
+                              : "w-18 flex items-center rounded bg-slate-200 text-center text-[#59719d]"
+                          }`}
+                        >
+                          <BsDot size={15} />
+                          {status}
+                        </span>
+                      </div>
+                      <div className="category flex items-center justify-between">
+                        <p className="font-bold	 text-slate-500">Sales:</p>
+                        <span>{sales}</span>
+                      </div>
+                      <div className="category flex items-center justify-between">
+                        <p className="font-bold	 text-slate-500">Stock:</p>
+                        <span>{stock}</span>
+                      </div>
+                      <div className="category flex items-center justify-between">
+                        <p className="font-bold	 text-slate-500">Price:</p>
+                        <span>{price}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );

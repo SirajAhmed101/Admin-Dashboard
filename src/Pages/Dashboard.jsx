@@ -4,7 +4,6 @@ import { BiSolidShoppingBags } from "react-icons/bi";
 import { AiFillEye } from "react-icons/ai";
 import Sidebar from "../Component/Sidebar/Sidebar";
 import productsData from "../Data/ProdutcData";
-import { BiEdit } from "react-icons/bi";
 
 const Dashboard = () => {
   return (
@@ -83,13 +82,13 @@ const Dashboard = () => {
                       Price
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Status
+                      Action
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {productsData.map((items, i) => {
-                    const { name, src, Category, status, price, stock, sales } =
+                    const { name, src, category, status, price, stock, sales } =
                       items;
                     return (
                       <tr
@@ -100,19 +99,21 @@ const Dashboard = () => {
                           scope="row"
                           className="flex items-center gap-2 whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
                         >
-                          <div className="h-[30px] w-[50px]">
-                            <img src={src} className="h-full w-full" />
+                          <div className="h-[50px] w-[50px]">
+                            <img
+                              src={src}
+                              className="h-full w-full object-cover object-center mix-blend-multiply	contrast-100"
+                            />
                           </div>
                           {name}
                         </th>
-                        <td className="px-6 py-4">{Category}</td>
+                        <td className="px-6 py-4">{category}</td>
                         <td className="px-6 py-4">{status}</td>
                         <td className="px-6 py-4">{sales}</td>
                         <td className="px-6 py-4">{stock}</td>
                         <td className="px-6 py-4">{price}</td>
                         <td className="flex items-center px-6 py-4">
                           <AiFillEye size={25} color="green" />
-                          <BiEdit size={25} />
                         </td>
                       </tr>
                     );

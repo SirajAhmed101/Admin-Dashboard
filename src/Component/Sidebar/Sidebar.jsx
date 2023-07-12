@@ -41,7 +41,7 @@ const Sidebar = () => {
               <a href="/" className="ml-2 flex md:mr-24">
                 <img src={Logo} className="mr-3 h-8" alt="FlowBite Logo" />
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white sm:text-2xl">
-                  ShopCart
+                  ShopExpress
                 </span>
               </a>
             </div>

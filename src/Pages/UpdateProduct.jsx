@@ -40,22 +40,8 @@ const UpdateProduct = () => {
     const checkID = productsData.find((item) => {
       return item.id === updateFormData.id;
     });
-
-    setProductsData([
-      ...productsData,
-      {
-        id,
-        name,
-        sales,
-        price,
-        category,
-        stock,
-        description,
-        src,
-        file,
-        status,
-      },
-    ]);
+    Object.assign(checkID, updateFormData);
+    alert("Your Item Successfully Updated");
   }
 
   return (
