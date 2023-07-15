@@ -3,9 +3,9 @@ import { ProductContext } from "../Context/ProductContext";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-  const { productsData, setProductsData } = useContext(ProductContext);
-
   const navigate = useNavigate();
+
+  const { productsData, setProductsData } = useContext(ProductContext);
 
   const [formData, setFormData] = useState({
     id: "",
@@ -19,19 +19,6 @@ const AddProduct = () => {
     file: "",
     status: "",
   });
-
-  const {
-    id,
-    name,
-    sales,
-    price,
-    category,
-    stock,
-    description,
-    src,
-    file,
-    status,
-  } = formData;
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -48,8 +35,22 @@ const AddProduct = () => {
     localStorage.setItem("productsData", JSON.stringify(productsData));
   }, [productsData]);
 
+  let {
+    id,
+    name,
+    sales,
+    price,
+    category,
+    stock,
+    description,
+    src,
+    file,
+    status,
+  } = formData;
+
   function handleSubmit(e) {
     e.preventDefault();
+
     setProductsData([
       ...productsData,
       {
@@ -106,7 +107,7 @@ const AddProduct = () => {
                       id="name"
                       className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                       placeholder="Type product name"
-                      required=""
+                      required:true
                     />
                   </div>
                   <div className="w-full">

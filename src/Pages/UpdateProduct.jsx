@@ -8,20 +8,7 @@ const UpdateProduct = () => {
   const { updateFormData, setUpdateFormData } =
     useContext(UpdateProductContext);
 
-  const {
-    id,
-    name,
-    sales,
-    price,
-    category,
-    stock,
-    description,
-    src,
-    file,
-    status,
-  } = updateFormData;
-
-  const { productsData, setProductsData } = useContext(ProductContext);
+  const { productsData } = useContext(ProductContext);
 
   const navigate = useNavigate();
 

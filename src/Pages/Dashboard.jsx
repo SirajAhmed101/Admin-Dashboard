@@ -9,11 +9,11 @@ const Dashboard = () => {
   return (
     <>
       <Sidebar />
-      <div className="p-8 sm:ml-64">
-        <div className="mt-14 text-3xl font-bold">
+      <div className="p-8 lg:ml-64">
+        <div className="mt-14 text-3xl font-bold ">
           <h1>Dashboard</h1>
         </div>
-        <div className="mt-10 grid grid-cols-3 gap-6">
+        <div className="mt-10 grid grid-cols-3 gap-6 max-sm:grid-cols-1">
           <div className="sales flex items-center justify-center rounded border bg-white py-5  shadow">
             <BsCurrencyDollar className="mr-4  text-3xl text-blue-800 " />
             <div className="sales-data">
@@ -21,14 +21,14 @@ const Dashboard = () => {
               <p className="price">$22,678</p>
             </div>
           </div>
-          <div className="sales flex items-center justify-center rounded border bg-white shadow">
+          <div className="sales flex items-center justify-center rounded border bg-white py-5 shadow">
             <BsFillBasket2Fill className="bg- mr-4 text-3xl text-green-800" />
             <div className="sales-data ">
               <h3> Total Products</h3>
               <p className="price">70</p>
             </div>
           </div>
-          <div className="sales flex items-center justify-center rounded border bg-white shadow">
+          <div className="sales flex items-center justify-center rounded border bg-white py-5 shadow">
             <BiSolidShoppingBags className="bg- mr-4  text-3xl text-yellow-400" />
             <div className="sales-data">
               <h3>Total Orders</h3>
@@ -38,8 +38,10 @@ const Dashboard = () => {
         </div>
         <div className="recent-orders bg-white px-2 py-6">
           <div className="mb-5 flex items-center ">
-            <h3 className=" text-xl font-bold">Select Status:</h3>
-            <select className=" ml-[5rem]">
+            <h3 className=" text-xl font-bold max-sm:text-sm">
+              Select Status:
+            </h3>
+            <select className=" ml-[5rem] max-sm:text-sm">
               <option value="status">Select-Status</option>
               <option value="processing">Processing</option>
               <option value="shipping">Shipping</option>
@@ -49,9 +51,9 @@ const Dashboard = () => {
           </div>
 
           <div className="recent-orders-container">
-            <div className="mb-5 flex items-center justify-between">
+            <div className="mb-5 flex items-center justify-between max-sm:text-sm">
               <h4>Recent Orders</h4>
-              <select name="show" className=" py-0">
+              <select name="show" className=" py-0 max-sm:text-sm">
                 <option value="show">Show</option>
                 <option value="10">10</option>
                 <option value="10">20</option>

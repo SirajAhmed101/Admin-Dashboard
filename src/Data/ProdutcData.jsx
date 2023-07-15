@@ -1,12 +1,20 @@
+let currentDate = new Date().toLocaleDateString("en", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
 const productsData = [
   {
-    name: "T-Shirt",
+    name: "T Shirt",
     src: "https://images.unsplash.com/photo-1467043237213-65f2da53396f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     category: "Clothes",
     status: "Active",
     sales: "1051",
     stock: "1153",
     price: "$12563",
+    track: "Delivered",
+    paid: `Paid At ${currentDate}`,
   },
   {
     name: "Vegitable",
@@ -16,6 +24,8 @@ const productsData = [
     sales: "116",
     stock: "134",
     price: "$8123",
+    track: "Not-Delivered",
+    paid: "Not paid",
   },
   {
     name: "Electronics",
@@ -25,6 +35,8 @@ const productsData = [
     sales: "1153",
     stock: "1345",
     price: "$12043",
+    track: "Delivered",
+    paid: `Paid At ${currentDate}`,
   },
   {
     name: "Apple MacBook",
@@ -34,6 +46,8 @@ const productsData = [
     sales: "150",
     stock: "500",
     price: "$8000",
+    track: "Not-Delivered",
+    paid: "Not paid",
   },
   {
     name: "Tablet",
@@ -43,6 +57,8 @@ const productsData = [
     sales: "10",
     stock: "100",
     price: "$1000",
+    track: "Delivered",
+    paid: `Paid At ${currentDate}`,
   },
 ];
 

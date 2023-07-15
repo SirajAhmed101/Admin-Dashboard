@@ -19,7 +19,7 @@ const Sidebar = () => {
                 data-drawer-toggle="logo-sidebar"
                 aria-controls="logo-sidebar"
                 type="button"
-                className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 sm:hidden"
+                className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
                 onClick={() => setToggle(!toggle)}
               >
                 <span className="sr-only">Open sidebar</span>
@@ -135,7 +135,7 @@ const Sidebar = () => {
         id="logo-sidebar"
         className={`${
           toggle ? "" : "-translate-x-full"
-        } fixed left-0 top-0 z-40 h-screen w-64  border-r border-gray-200 bg-white pt-20 transition-transform dark:border-gray-700 dark:bg-gray-800 sm:translate-x-0`}
+        } fixed left-0 top-0 z-40 h-screen w-64  border-r border-gray-200 bg-white pt-20 transition-transform dark:border-gray-700 dark:bg-gray-800 lg:translate-x-0`}
         aria-label="Sidebar"
       >
         <div className="h-full overflow-y-auto bg-white px-3 pb-4 dark:bg-gray-800">
